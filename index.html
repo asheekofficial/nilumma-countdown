@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown to Meet Nilumma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 1.5rem;
+      justify-content: center;
+      animation: popIn 2s ease-in-out;
+      max-width: 600px;
+      width: 100%;
+    }
+    .countdown div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 8px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      min-width: 0;
+      flex: 1 1 calc(25% - 20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .label {
+      font-size: 0.75rem;
+      margin-top: 6px;
+      color: white;
+      font-weight: 300;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .hearts {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .heart {
+      width: 16px;
+      height: 16px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 4s infinite ease-in-out;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      background: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -8px;
+      left: 0;
+    }
+    .heart::after {
+      left: -8px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-200px) rotate(45deg); opacity: 0; }
+    }
+    .message {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #fff5f7;
+      max-width: 600px;
+      animation: fadeIn 3s ease-in-out;
+      padding: 0 15px;
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+      }
+      .countdown {
+        gap: 8px;
+      }
+      .countdown div {
+        padding: 10px 5px;
+        border-radius: 10px;
+        flex: 1 1 calc(25% - 16px);
+      }
+      .message {
+        font-size: 0.9rem;
+        margin-top: 25px;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      .countdown {
+        font-size: 1.2rem;
+        gap: 6px;
+      }
+      .countdown div {
+        padding: 8px 4px;
+        border-radius: 8px;
+        flex: 1 1 calc(25% - 12px);
+      }
+      .label {
+        font-size: 0.65rem;
+        margin-top: 4px;
+      }
+      .message {
+        font-size: 0.85rem;
+        margin-top: 20px;
+      }
+      .heart {
+        width: 12px;
+        height: 12px;
+      }
+      .heart::before,
+      .heart::after {
+        width: 12px;
+        height: 12px;
+      }
+      .heart::before {
+        top: -6px;
+      }
+      .heart::after {
+        left: -6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to Meet Nilumma 💖</h1>
+  <div class="countdown">
+    <div><span id="days">00</span><div class="label">Days</div></div>
+    <div><span id="hours">00</span><div class="label">Hours</div></div>
+    <div><span id="minutes">00</span><div class="label">Minutes</div></div>
+    <div><span id="seconds">00</span><div class="label">Seconds</div></div>
+  </div>
+  <div class="message">Every second brings me closer to the moment I get to hold your hand again. Can't wait to see your smile, Nilumma ❤️</div>
+  <div class="hearts">
+    <div class="heart" style="animation-delay: 0s;"></div>
+    <div class="heart" style="animation-delay: 1s;"></div>
+    <div class="heart" style="animation-delay: 2s;"></div>
+    <div class="heart" style="animation-delay: 3s;"></div>
+  </div>
+  <script>
+    const targetDate = new Date("2025-04-19T10:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+
+      if (distance < 0) {
+        document.querySelector(".countdown").innerHTML = "💘 It's time to meet Nilumma! 💘";
+        document.querySelector(".message").textContent = "The wait is over. You're finally in my arms again, Nilumma ❤️";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
