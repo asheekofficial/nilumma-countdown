@@ -183,10 +183,11 @@
     <div class="heart" style="animation-delay: 3s;"></div>
   </div>
   <script>
-    const targetDate = new Date("2025-04-19T10:00:00").getTime();
+    const targetDate = new Date("2025-04-19T10:00:00+05:30").getTime();
 
     function updateCountdown() {
-      const now = new Date().getTime();
+      const now = new Date().getTime() + (new Date().getTimezoneOffset() * 60 * 1000) + (5.5 * 60 * 60 * 1000);
+      
       const distance = targetDate - now;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
